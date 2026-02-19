@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> More Html Tables</title>
+</head>
+<body>
+    <!-- Learning More html tables -->
+     <table border="1">
+        <!-- Provide Descricption for screem readers -->
+        <p id="table-description">This Table Lists Students Scores.</p>
+        <caption>Scores of Students</caption>
+        <colgroup>
+            <col samp="1">
+            <col samp="2">
+        </colgroup>
+        <thead>
+            <tr>
+                <th rowspan="2">Name</th>
+                <th colspan="2">Subjects</th>
+                <th rowspan="2">Total Marks</th>
+            </tr>
+            <tr>
+                <th>math</th>
+                <th>Science</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Soorya</td>
+                <td>80</td>
+                <td>80</td>
+                <td>160</td>
+            </tr>
+            <tr>
+                <td>madhu</td>
+                <td>60</td>
+                <td>60</td>
+                <td>120</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Avg.Score</td>
+                <td>140</td>
+            </tr>
+        </tfoot>
+     </table>
+</body>
+</html>
