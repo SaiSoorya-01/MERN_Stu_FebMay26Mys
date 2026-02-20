@@ -1,0 +1,17 @@
+.Box{
+    width: 100;
+    height: 100;
+    background-color: rgb(141, 70, 90);
+}   
+.Box{
+    margin: 30px; /*All 4 side same size*/
+    margin: 10px 30px; /* Top:10 right:30*/
+    margin: 10px 30px 20px 40px;/* Top:10 right:30  bottom:20 left:40*/
+    margin: auto;
+}
+body{
+    background-color: rgb(54, 52, 168);
+}
+.border{
+    
+}
