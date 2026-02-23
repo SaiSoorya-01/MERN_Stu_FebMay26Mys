@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex layout</title>
+    <style>
+        .flex-container{
+            display: flex;
+            background-color: bisque;
+            /* space-around,flex-start,flex-end,flex-center,center,space-evenly */
+            /* justify-content: space-evenly; */
+            /* Verticle-align:center */
+            align-items: baseline;
+            height: 100px;
+            flex-direction: column-reverse; /* row-revers/row*/
+            flex-wrap: nowrap;
+
+        }
+        .flex-item{
+            background-color: cornsilk;
+            margin: 10px;
+            padding: 20px;
+            width: 100px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Display: flex</h1>
+    <div class="flex-container">
+        <div class="flex-item">content 1</div>
+        <div class="flex-item">content 2</div>
+        <div class="flex-item">content 3</div>
+    </div>
+</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex layout</title>
+    <style>
+        .flex-container{
+          
+            display: flex;
+            background-color: bisque;
+            /*space-around,flex-start,flex-end,flex-center,center,space-evenly*/
+            /* justify-content: space-evenly; */
+            /* align-items is used for vertical alignment 
+            vertical-align:center/flex-start/flex-end*/
+            align-items: base-line;
+            height: 100px;
+            flex-direction: column-reverse;/* row-reverse/column/row */
+            flex-wrap: nowrap;
+        }
+        .flex-item{
+            background-color: cornsilk;
+            margin: 10px;
+            padding: 20px;
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>display: flex</h1>
+    <div class="flex-container">
+        <div class="flex-item">content 1</div>
+        <div class="flex-item">content 2</div>
+        <div class="flex-item">content 3</div>
+
+    </div>
+</body>
+</html>
