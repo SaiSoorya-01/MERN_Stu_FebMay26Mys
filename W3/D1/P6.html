@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Objects, arrays </title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <pre id="out">
+    </pre>
+     <button id="runBtn" class="px-3 py-1 rounded mt-2 mb-2 bg-black text-white">run</button>
+    <script>
+        const out = document.getElementById("out");
+
+        function print(...args){
+        // console
+        console.log(...args);
+        out.textContent+=args.join("")+"\n";   
+    }
+
+        function clearOut(){
+            out.textContent = "";
+        }
+
+        function run(){
+            clearOut();
+            //Dynamic typing, concatenation,type convertion
+            let value = "10";
+            print("value = ",value,"Typeof=",typeof value);
+            value = 20;
+            print("value = ",value,"Typeof=",typeof value);
+
+
+            print("'10'+5: ","10"+5);
+            print("'10'-5: ","10"-5);//numeric convertion
+
+            print("'10'===10","10"===10);
+
+            //Dtat types
+            const undefval = undefined;
+            const nullVal = null;
+
+            print("undefval = ",typeof undefval);
+            print("nullVal = ",nullVal,"typeof:" ,typeof undefval);
+        }
+        document.getElementById("runBtn").addEventListener
+    ("click",run);
+    
+    </script>
+</body>
+</html>
