@@ -6,7 +6,7 @@ const employee = {
     isActive: true
 };
 const jsonString = JSON.stringify(employee);
-// console.log(jsonString);
+//console.log(jsonString);
 // console.log(employee);
 
 //JSON parsing
