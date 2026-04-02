@@ -2,7 +2,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
-
+//cookie-parser reads the cookie request header and places the parsed values into req.cookies
 
 app.use(cookieParser());
 app.get("/set-language",function(req,res){
