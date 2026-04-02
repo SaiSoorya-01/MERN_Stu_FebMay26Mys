@@ -5,8 +5,8 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-const secretkey = "Jeevan123";
-const refreshSecretkey = "NewJeevan123";
+const secretkey = "Mysecretkey";
+const refreshSecretkey = "Newsecretkey123";
 
 //in-memory storage for refresh tokens
 const refreshTokens = [];
@@ -124,3 +124,5 @@ app.listen(4000, function () {
 
 
 //curl -X POST http://localhost:4000/login -H "Content-Type:application/json" -d "{\"email\":\"email@email.com\",\"password\":\"password@123\"}"
+//curl -X POST http://localhost:4000/refresh -H "Content-Type:application/json" -d "{\"refreshToken\":
+// curl http://localhost:4000/me -H "Authorixation:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwiZW1haWwiOiJlbWFpbEBlbWFpbC5jb20iLCJyb2xlIjoibWVtYmVyIiwiaWF0IjoxNzc1MTE0Mjg1LCJleHAiOjE3NzUxMTUxODUsImlzcyI6Imp3dC1leGFtcGxlIn0.pwRGzidNYqum3UZ5JYXfsYOf6JMjSLJmHOqvHRiwXG8"
