@@ -1,4 +1,4 @@
-// Handles requset related to movie
+// Handles requests related to movie
 const express = require("express");
 const { authMiddleware } = require("../middleware/authMiddleware");
 const {
@@ -12,18 +12,17 @@ const {
 const roleMiddleware = require("../middleware/roleMiddleware");
 
 const router = express.Router();
-// sends req to home
+//Sends req to home page
 router.get("/",getHome);
-// sends req to get all movies
+//Sends req to get all movies
 router.get("/movies",getAllMovies);
-// sends req to get movies based on id
+//Sends req to get movies based on id
 router.get("/movies/:id",getMovieById);
-
-// this will allow the auther to add Movie,sends req to create new movie
+//Sends req to create new movie
 router.post("/movies",authMiddleware,roleMiddleware("admin"),addMovie);
-// this router is used to update the movie by auther,sends reqto update the movie
+//Sends req to update movie detail/s
 router.put("/movies/:id",authMiddleware,roleMiddleware("admin"),updateMovie);
-// this is used to delete the movie by the auther,sends req to delete a movie
+//Sends req to delete a movie
 router.delete("/movies/:id",authMiddleware,roleMiddleware("admin"),deleteMovie);
 
 module.exports = router;
