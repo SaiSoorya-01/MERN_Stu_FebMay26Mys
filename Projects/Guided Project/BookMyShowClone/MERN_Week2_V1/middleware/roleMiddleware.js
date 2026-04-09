@@ -1,0 +1,15 @@
+// Checks the permission for the req and allows it or rejects it
+const CustomError = require("../utils/customError");
+
+function roleMiddleware(...allowedRoles){
+    return(req,res,next)=>{
+        if (!req.user) {
+            return next (new CustomError("User info not found.",404));
+        }
+        if (!allowedRoles.includes(req.user.role)) {
+            return next (new CustomError("Forbidden: you do not have access to this resource.",404));
+        }
+        next();
+    };
+}
+module.exports = roleMiddleware;
