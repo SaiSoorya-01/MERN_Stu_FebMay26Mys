@@ -1,6 +1,6 @@
 // functions for movie handling are created
 const movies = require("../data/movies");
-const CustomError = require("./utils/CustomError");
+const CustomError = require("../utils/CustomError");
 
 function getHome(req,res){
     res.status(200).json({
@@ -14,13 +14,16 @@ function getAllMovies(req,res){
     let filteredMovies = movies;
 
     if (language) {
-        filteredMovies = filteredMovies.filter((movies)=>movies.language.toLowerCase()===language.toLowerCase());
+        filteredMovies = filteredMovies.filter(
+            (movie)=>movie.language.toLowerCase()===language.toLowerCase());
     }
     if (genre) {
-        filteredMovies = filteredMovies.filter((movies)=>movies.genre.toLowerCase()===genre.toLowerCase());
+        filteredMovies = filteredMovies.filter(
+            (movie)=>movie.genre.toLowerCase()===genre.toLowerCase());
     }
     if (city) {
-        filteredMovies = filteredMovies.filter((movies)=>movies.city.toLowerCase()===city.toLowerCase());
+        filteredMovies = filteredMovies.filter(
+            (movie)=>movie.city.toLowerCase()===city.toLowerCase());
     }
     res.status(200).json({
         success:true,
@@ -34,7 +37,7 @@ function getMovieById(req,res,next){
     const movie = movies.find((m)=>m.id === movieId);
 
     if (!movie) {
-        return next(new CustomError("Movie not found.",404));
+        return next(new CustomError("Movie not found",404));
     }
     res.status(200).json({
         success:true,
@@ -43,14 +46,14 @@ function getMovieById(req,res,next){
 }
 
 function addMovie(req,res,next){
-    const{title,language,genre,city,cinema,showtimes} = req.body;
+    const {title,language,genre,city,cinema,showtimes} = req.body;
 
-    if (!title ||!language||!genre||!city||!cinema||!showtimes) {
-        return next(new CustomError("title,language,genre,city,cinema,showtimes are required .",404));
+    if(!title||!language||!genre||!city||!cinema||!showtimes){
+        return next(new CustomError("title,language,genre,city,cinema,showtimes are required",404));
     }
 
     const newMovie = {
-        Id:movies.length+1,
+        id:movies.length+1,
         title,
         language,
         genre,
@@ -62,7 +65,7 @@ function addMovie(req,res,next){
     res.status(201).json({
         success:true,
         message:"Movie added Successfully",
-        data:newMovie
+        data: newMovie
     });
 }
 
@@ -71,17 +74,16 @@ function updateMovie(req,res,next){
     const movie = movies.find((m)=>m.id === movieId);
 
     if (!movie) {
-        return next(new CustomError("Movie not found.",404));
+        return next(new CustomError("Movie not found",404));
     }
 
-    const{title,language,genre,city,cinema,showtimes} = req.body;
-    if (title) movie.title = title; 
+    const {title,language,genre,city,cinema,showtimes} = req.body;
+    if(title) movie.title = title;
     if(language) movie.language = language;
-    if (genre) movie.genre = genre; 
-    if (city) movie.city = city; 
-    if (cinema) movie.cinema = cinema; 
-    if (showtimes) movie.showtimes = showtimes; 
-
+    if(genre) movie.genre = genre;
+    if(city) movie.city = city;
+    if(cinema) movie.cinema = cinema;
+    if(showtimes) movie.showtimes = showtimes;
 
     res.status(200).json({
         success:true,
@@ -92,17 +94,18 @@ function updateMovie(req,res,next){
 
 function deleteMovie(req,res,next){
     const movieId = Number(req.params.id);
-    const movie = movies.findIndex((m)=>m.id === movieId);
+    const movieIndex = movies.findIndex((m)=>m.id === movieId);
 
-    if (movieIndex ===-1) {
-        return next(new CustomError("Movie not found.",404));
-    } 
-    const deletedMovie = movie.splice(movieIndex,1);
+    if (movieIndex === -1) {
+        return next(new CustomError("Movie not found",404));
+    }
+
+    const deletedMovie = movies.splice(movieIndex,1);    
 
     res.status(200).json({
         success:true,
         message:"Movie deleted Successfully",
-        data: deleteMovie[0]
+        data: deletedMovie[0]
     });
 }
 
