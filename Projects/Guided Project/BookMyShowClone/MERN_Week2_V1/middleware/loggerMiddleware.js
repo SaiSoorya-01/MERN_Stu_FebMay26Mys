@@ -1,6 +1,6 @@
-// Middleware for req log
+//Middleware for req log
 function loggerMiddleware(req,res,next){
-    console.log(`${req.metho} ${req.originalUrl}`);
+    console.log(`${req.method} ${req.originalUrl}`);
     next();
 }
 module.exports = loggerMiddleware;
