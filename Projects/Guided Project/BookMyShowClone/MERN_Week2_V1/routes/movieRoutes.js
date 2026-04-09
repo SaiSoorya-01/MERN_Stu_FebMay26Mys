@@ -10,6 +10,8 @@ const {
     deleteMovie
 } = require("../controllers/movieController");
 const roleMiddleware = require("../middleware/roleMiddleware");
+
+const router = express.Router();
 // sends req to home
 router.get("/",getHome);
 // sends req to get all movies
@@ -24,4 +26,4 @@ router.put("/movies/:id",authMiddleware,roleMiddleware("admin"),updateMovie);
 // this is used to delete the movie by the auther,sends req to delete a movie
 router.delete("/movies/:id",authMiddleware,roleMiddleware("admin"),deleteMovie);
 
-module.exports = roleMiddleware;
+module.exports = router;
