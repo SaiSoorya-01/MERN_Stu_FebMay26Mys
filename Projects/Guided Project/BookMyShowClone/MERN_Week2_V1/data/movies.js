@@ -6,8 +6,8 @@ const movies = [
         id:1,
         title:"Dhurandar2",
         language:"Hindi",
-        genre:"action Thriller",
-        city:"Mysuru",
+        genre:"Action Thriller",
+        city: "Mysuru",
         cinema:"Nexus Mall-Screen 1",
         showtimes:[
             {time: "10:00 AM",seatsAvailable: 250},
@@ -20,7 +20,7 @@ const movies = [
         title:"LoveMocktail3",
         language:"Kannada",
         genre:"Romantic",
-        city:"Mysuru",
+        city: "Mysuru",
         cinema:"DRC Mall-Screen 2",
         showtimes:[
             {time: "10:00 AM",seatsAvailable: 100},
@@ -29,11 +29,11 @@ const movies = [
         ]
     },
     {
-        id:3,   
+        id:3,
         title:"Hayagreeva",
         language:"Kannada",
-        genre:"action",
-        city:"Davangere",
+        genre:"Action",
+        city: "Davangere",
         cinema:"Davangere Mall-Screen 1",
         showtimes:[
             {time: "11:00 AM",seatsAvailable: 100},
