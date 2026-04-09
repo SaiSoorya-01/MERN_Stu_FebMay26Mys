@@ -1,14 +1,14 @@
-// 
+// Does the ticket booking
 const movies = require("../data/movies");
 const CustomError = require("../utils/CustomError");
 
-const booking = [];
+const bookings = [];
 
 function bookingValidationHandler(req, res, next) {
     const { movieId, showtimeId, seatCount } = req.body;
 
     if (!movieId || !showtimeId || !seatCount) {
-        return next(new CustomError("movieId,showtimeId,seatCount are required.", 404));
+        return next(new CustomError("movieId,showtimeId,seatCount are required", 404));
     }
     next();
 }
@@ -17,74 +17,74 @@ function createBooking(req, res, next) {
     try {
         const { movieId, showtimeId, seatCount } = req.body;
 
-
         const movie = movies.find((m) => m.id === Number(movieId));
         if (!movie) {
-            return next(new CustomError("Movie not found.", 404));
+            return next(new CustomError("Movie not found", 404));
         }
-        const showtimes = movies.showtimes.find((s) => s.id === Number(showtimeId));
-        if (!showtimes) {
-            return next(new CustomError("showTime not found.", 404));
+        const showtime = movies.showtimes.find((s) => s.id === Number(showtimeId));
+        if (!showtime) {
+            return next(new CustomError("showtime not found", 404));
         }
-        if (showtimes.seatsAvailable < Number(seatCount)) {
-            return next(new CustomError("not enough seats available.", 404));
+        if (showtime.seatsAvailable < Number(seatCount)) {
+            return next(new CustomError("Not enough seats available", 404));
+        }
 
-        }
-        showtimes.seatsAvailable-=Number(seatCount);
+        showtime.seatsAvailable -= Number(seatCount);
 
         const booking = {
-        id:booking.length+1,
-        userId: req.user.id,
-        userName: req.user.name,
-        movieId:movie.id,
-        movieTitle = movie.title,
-        showtimeId:showtime.id,
-        showtime:showtime.time,
-        seatCount:Number(seatCount)
-            };
-            booking.push(booking);
+            id: bookings.length + 1,
+            userId: req.user.id,
+            userName: req.user.name,
+            movieId: movie.id,
+            movieTitle: movie.title,
+            showtimeId: showtime.id,
+            showtime: showtime.time,
+            seatCount: Number(seatCount)
+        };
+        bookings.push(booking);
 
         res.status(201).json({
-            success:true,
-            message:"Booking created successfully.",
-            data:booking
+            success: true,
+            message: "Booking created successfully.",
+            data: booking
         });
 
-    }catch(error){
+    }
+    catch (error) {
         next(error);
     }
 }
 
-function getAllBookings(req,res,next){
-    try{
+function getAllBookings(req, res, next) {
+    try {
         res.status(200).json({
-            success:true,
-            const:booking.length,
-            data:booking
+            success: true,
+            count: bookings.length,
+            data: bookings
         });
     }
-    catch(error){
+    catch (error) {
         next(error);
     }
 }
 
-function getMyBookings(req,res,next){
-    try{
-        const userBooking = booking.filter((booking)=>booking.userId === req.user.id);
+function getMyBookings(req, res, next) {
+    try {
+        const userBookings = bookings.filter((booking) => booking.userId === req.user.id);
         res.status(200).json({
-            success:true,
-            const:userbookings.length,
-            data:userbookings
+            success: true,
+            count: userBookings.length,
+            data: userBookings
         });
     }
-    catch(error){
+    catch (error) {
         next();
     }
 }
 
-module.exports={
+module.exports = {
     bookingValidationHandler,
     createBooking,
     getAllBookings,
     getMyBookings
-}
+};
