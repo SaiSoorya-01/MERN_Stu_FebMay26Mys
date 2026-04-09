@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Premium Portfolio</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<link rel="stylesheet" href="css/custom.css">
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 to-blue-100 text-gray-800">
+
+<!-- Progress Bar -->
+<div id="progress-bar" class="fixed top-0 left-0 h-1 bg-blue-600 w-0 z-50"></div>
+
+<!-- NAVBAR -->
+<nav class="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b shadow-sm">
+<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+<h1 class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+SM
+</h1>
+
+<div class="hidden md:flex gap-8 font-semibold">
+<a href="#projects" class="hover:text-blue-600">Projects</a>
+<a href="#skills" class="hover:text-blue-600">Skills</a>
+</div>
+
+<button id="theme-toggle" class="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300">
+🌙
+</button>
+
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+
+<h1 class="text-5xl md:text-6xl font-bold mb-6">
+Sai Soorya
+</h1>
+
+<p id="typing" class="text-xl text-blue-600 font-semibold mb-4"></p>
+
+<p id="greeting" class="mb-2"></p>
+<p id="location" class="text-sm text-gray-500"></p>
+
+<div class="mt-8 flex gap-4">
+<a href="#projects" class="bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:scale-105 transition">
+View Projects
+</a>
+
+<a href="#" class="bg-white border px-6 py-3 rounded-xl shadow hover:scale-105 transition">
+Resume
+</a>
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-20 px-6">
+
+<h2 class="text-4xl font-bold text-center mb-10">Projects</h2>
+
+<div class="flex flex-col md:flex-row gap-4 justify-center mb-8">
+<input id="search" placeholder="Search..."
+class="border px-4 py-2 rounded-lg w-full md:w-64">
+
+<select id="sort" class="border px-4 py-2 rounded-lg">
+<option value="az">A-Z</option>
+<option value="za">Z-A</option>
+</select>
+</div>
+
+<p id="count" class="text-center mb-6 font-semibold"></p>
+
+<div id="projects-container"
+class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+</div>
+
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-20 bg-white">
+
+<h2 class="text-4xl font-bold text-center mb-12">Skills</h2>
+
+<div id="skills-container"
+class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+</div>
+
+</section>
+
+<!-- BACK TO TOP -->
+<button id="top-btn"
+class="fixed bottom-6 right-6 hidden bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:scale-110 transition">
+↑
+</button>
+
+<!-- CONTACT FLOAT -->
+<button id="modal-btn"
+class="fixed bottom-6 left-6 bg-purple-600 text-white w-14 h-14 rounded-full shadow-lg hover:scale-110 transition">
+☎
+</button>
+
+<!-- MODAL -->
+<div id="modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center">
+
+<div class="bg-white p-8 rounded-xl shadow-xl w-80 space-y-4">
+
+<h3 class="text-xl font-bold">Contact Me</h3>
+
+<input id="name" placeholder="Name" class="w-full border p-2 rounded">
+<input id="email" placeholder="Email" class="w-full border p-2 rounded">
+
+<div class="flex gap-4">
+<button id="close" class="flex-1 bg-gray-200 p-2 rounded">Close</button>
+<button class="flex-1 bg-blue-600 text-white p-2 rounded">Send</button>
+</div>
+
+</div>
+</div>
+
+<!-- JS -->
+<script src="js/data/projects.js"></script>
+<script src="js/data/skills.js"></script>
+<script src="js/features/projects.js"></script>
+<script src="js/features/skills-render.js"></script>
+<script src="js/features/modal.js"></script>
+<script src="js/features/contact.js"></script>
+<script src="js/features/theme.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
