@@ -1,7 +1,6 @@
-const user = {
-    name :"",
-    enrolledCourses :{}
+let user = {
+  name: "",
+  enrolledCourses: []
 };
 
-// console.log(users);
-module.exports=user;
+module.exports = user;

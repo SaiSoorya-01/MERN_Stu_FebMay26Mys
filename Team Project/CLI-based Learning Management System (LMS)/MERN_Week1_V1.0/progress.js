@@ -1,11 +1,11 @@
-const user = require('./user');
-const emitter = require('./events');
+const user = require("./user");
+const events = require("./events");
 
 async function completeLesson(courseId, lessonIndex) {
   try {
-    const course = user.enrolledCourses[courseId];
+    const course = user.enrolledCourses.find(c => c.id === courseId);
 
-    if (!course) throw "Not enrolled in this course";
+    if (!course) throw "Not enrolled";
 
     if (course.completedLessons.includes(lessonIndex)) {
       throw "Lesson already completed";
@@ -13,12 +13,11 @@ async function completeLesson(courseId, lessonIndex) {
 
     course.completedLessons.push(lessonIndex);
 
-    const progress = (course.completedLessons.length / course.lessons.length) * 100;
+    events.emit("lessonCompleted", course.title);
 
-    emitter.emit("lessonCompleted", course.title);
-
-    return progress.toFixed(2);
+    return "Lesson completed";
   } catch (err) {
+    events.emit("operationFailed", err);
     throw err;
   }
 }

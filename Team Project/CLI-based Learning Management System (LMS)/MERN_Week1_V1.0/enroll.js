@@ -1,27 +1,31 @@
-const user = require('./user');
-const courses = require('./courses');
-const emitter = require('./events');
+const user = require("./user");
+const events = require("./events");
 
-function enroll(courseId) {
+function enrollCourse(course) {
   return new Promise((resolve, reject) => {
-    const course = courses.find(c => c.id === courseId);
+    events.emit("enrollmentStarted");
 
-    if (!course) return reject("Course not found");
-
-    if (user.enrolledCourses[courseId]) {
-      return reject("Already enrolled");
-    }
+    if (!course) return reject("Invalid course");
 
     resolve(course);
   })
-  .then(course => {
-    user.enrolledCourses[course.id] = {
-      ...course,
-      completedLessons: []
-    };
-    emitter.emit("enrollmentConfirmed", course.title);
-    return course;
-  });
+    .then((course) => {
+      const exists = user.enrolledCourses.find(c => c.id === course.id);
+      if (exists) throw "Already enrolled";
+      return course;
+    })
+    .then((course) => {
+      user.enrolledCourses.push({
+        ...course,
+        completedLessons: []
+      });
+      events.emit("enrollmentConfirmed", course.title);
+      return "Enrollment successful";
+    })
+    .catch((err) => {
+      events.emit("operationFailed", err);
+      throw err;
+    });
 }
 
-module.exports = enroll;
+module.exports = enrollCourse;

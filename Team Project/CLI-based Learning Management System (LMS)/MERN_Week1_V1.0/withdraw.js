@@ -1,18 +1,18 @@
-const user = require('./user');
-const emitter = require('./events');
+const user = require("./user");
+const events = require("./events");
 
-function withdraw(courseId){
-    if(!user.enrolledCourses[courseId]){
-        return "Not enrolled";
-    }
+function withdrawCourse(courseId) {
+  const index = user.enrolledCourses.findIndex(c => c.id === courseId);
 
-    const title = user.enrolledCourses[courseId].title;
+  if (index === -1) {
+    events.emit("operationFailed", "Not enrolled");
+    return;
+  }
 
-    delete user.enrolledCourses[courseId];
+  const removed = user.enrolledCourses.splice(index, 1);
+  events.emit("courseWithdrawn", removed[0].title);
 
-    emitter.emit("courseWithdrawn",title);
-
-    return"Withdrawn successfully";
+  return "Withdrawn successfully";
 }
 
-module.exports = withdraw;
+module.exports = withdrawCourse;
