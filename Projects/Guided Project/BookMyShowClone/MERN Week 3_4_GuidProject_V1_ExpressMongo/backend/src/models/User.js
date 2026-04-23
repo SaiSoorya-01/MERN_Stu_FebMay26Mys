@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
         required: [true, "Name is requuired"],
         unique: true,
         lowercase: true,
-        match: [/^\s+@\s+\.\s+$/, "Please use valid email"],
+        match: [/^\S+@\S+\.\S+$/, "Please use valid email"],
         index: true,
     },
     password: {
@@ -22,10 +22,10 @@ const userSchema = new mongoose.Schema({
         select: false,
     },
     role: {
-        typr: String,
-        enum: ["user", "admin"],
-        default: "user",
-    },
+    type: String,       // correct
+    enum: ["user", "admin"],
+    default: "user",
+},
     isVerified: {
         type: Boolean,
         default: false,
